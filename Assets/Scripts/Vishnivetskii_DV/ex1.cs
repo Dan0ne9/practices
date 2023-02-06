@@ -4,26 +4,33 @@ using UnityEngine;
 
 public class ex1 : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public int N;
     void Start()
     {
-        int Acounter = 0;
-        int Bcounter = 0;
-        string line = "Ebychaya zalypa nahui,pishy 0vtoroi raz,ya v shoke";
-        foreach (char line1 in line)
+        int[,] massive = new int[N, N];
+        int[] maxmin = new int[2] { 255, 0 };
+        for (int i = 0; i < N; i++)
         {
-            if (line1 == '0')
+            for (int j = 0; j < N; j++)
             {
-                Debug.Log(Bcounter);
-                return;
-            }
-            if (line1 == 'a' || line1 == 'A')
-            {
-                Acounter++;
-            }
-            Bcounter++;
+                massive[i, j] = Random.Range(0, 100);   
+            }   
         }
-        Debug.Log($"bukva a = {Acounter} and kol-vo bukv v nabore {Bcounter}");
+
+        for (int i = 0; i < N; i++)
+        {
+            for (int j = 0; j < N; j++)
+            {
+                if (maxmin[1] < massive[i, j])
+                {
+                    maxmin[1] = massive[i, j];
+                }
+                if (maxmin[0] > massive[i, j])
+                {
+                    maxmin[0]= massive[i, j];
+                }
+            }
+            Debug.Log($"The number of elements in the array initially = {massive.Length}.Maximum element = {maxmin[1]} and minimum element = {maxmin[0]}.");
+        }
     }
 }
-

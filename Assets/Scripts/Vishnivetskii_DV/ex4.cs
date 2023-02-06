@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class ex4 : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public int row, column;
     void Start()
     {
-        for (int a = 5; a <= 10; a++)
+        int[,] Array = GenerateMas(row, column);
+        for (int i = 0; i < row; i++)
         {
-            for (int b = 5; b <= 10; b++)
+            for (int j = 0; j < column; j++)
             {
-                Debug.Log($"{a} x {b} = {a * b}");
-            }    
+                Debug.Log(Array[i,j]);
+            }
+        }
+
+        int[,] GenerateMas (int row, int column)
+        {
+            int[,] Array = new int[row, column];
+
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < column; j++)
+                {
+                    Array[i,j] = Random.Range(0, 255);
+                }
+            }
+        return Array;
         }
     }
 }
